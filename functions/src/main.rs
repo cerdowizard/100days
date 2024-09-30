@@ -37,3 +37,6 @@ fn max_array(arr: &[u32]) -> u32{
     }
     max
 }
+fn is_even(n: i32) -> bool {
+    n % 2 == 0
+}
