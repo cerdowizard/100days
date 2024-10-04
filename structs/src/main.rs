@@ -1,10 +1,27 @@
 use std::io;
+
+#[derive(Debug)]
+enum AccountType {
+    Savings(String),
+    Current(String),
+    Local(String),
+}
+impl AccountType {
+    fn new(&self) -> AccountType {
+        match self {
+            saving => AccountType::Savings("savings".to_string()),
+            current => AccountType::Current("current".to_string()),
+            local => AccountType::Local("local".to_owned()),
+        }
+    }
+}
 #[derive(Debug)]
 struct User {
     username: String,
     email: String,
     sign_in_count: u64,
     active: bool,
+    account_type: AccountType,
 }
 
 impl User{
@@ -14,6 +31,7 @@ impl User{
             email,
             sign_in_count: 1,
             active: true,
+            account_type:AccountType::Current("current".to_string()),
         }
     }
     fn get_user(&self){
@@ -23,9 +41,10 @@ impl User{
     fn update_user(&self, username: String, email: String) -> User {
         User {
             username,
-            email: email,
+            email,
             sign_in_count: self.sign_in_count,
             active: self.active,
+            account_type: AccountType::Current("current".to_string())
         }
     }
 
